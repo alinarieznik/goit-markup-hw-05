@@ -25,6 +25,9 @@
     --gallary-border:#EEEEEE;
     --icons: #AFB1B8;
     --background-icons-footer: rgba(255, 255, 255, 0.1);
+    --background-activity-overlay: rgba(47, 48, 58, 0.8);
+    --background-gallary-overlay: rgba(33, 150, 243, 0.9);
+    --backdrop-background: rgba(0, 0, 0, 0.2);
 }
 
 /* Main styles (inherited by other elements) */
@@ -207,7 +210,6 @@ margin-right: 50px;
     color: var(--primary-white-color);
     
     min-width: 696px;
-    /* are they right???? */
     margin-right: 252px;
     margin-left: 252px;
     margin-bottom: 30px;
@@ -237,6 +239,60 @@ margin-right: 50px;
 }
 
 .hero .btn.pointer {
+    cursor: pointer;
+}
+
+.hero {
+    position: relative;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    background-color: var(--backdrop-background);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.modal {
+    min-width: 528px;
+    min-height: 581px;
+    background-color: var(--primary-white-color);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-white-color);
+
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+
     cursor: pointer;
 }
 
@@ -311,6 +367,30 @@ margin-right: 50px;
 
 .activity-list .list-item:not(:last-child) {
     margin-right: 30px;
+}
+
+.thumb {
+    position: relative;
+}
+
+.activity-list .overlay {
+    background-color: var(--background-activity-overlay);
+    
+    width: 370px;
+    height: 70px;
+    padding-top: 27px;
+    padding-bottom: 27px;
+
+    position: absolute;
+    bottom: 0;
+}
+
+.activity-list .list-text {
+    font-weight: 700;
+    line-height: calc(16 / 14);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary-white-color);
 }
 
 .activity-title,
@@ -552,6 +632,36 @@ margin-right: 50px;
     margin-bottom: 30px;
 }
 
+.thumb {
+    position: relative;
+    /* width height for it??? */
+}
+
+.item-gallary .overlay {
+    background-color: var(--background-gallary-overlay);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+
+    opacity: 0;
+}
+
+.overlay-text {
+    font-size: 18px;
+    line-height: calc(28 / 18);
+    letter-spacing: 0.03em;
+    color: var(--primary-white-color);
+}
+
 .item-gallary .list-link {
     display: block;
     width: 100%;
@@ -561,6 +671,11 @@ margin-right: 50px;
 .item-gallary .list-link:hover,
 .item-gallary .list-link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.item-gallary .list-link:hover .overlay,
+.item-gallary .list-link:focus .overlay {
+    opacity: 1;
 }
 
 .gallary-undertitle {
