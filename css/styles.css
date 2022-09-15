@@ -149,6 +149,24 @@ margin-right: 50px;
 
 .nav-list .list-link.current {
     color: var(--accent-color);
+
+    position: relative;
+}
+
+.nav-list .list-link.current::after {
+    content: '';
+
+    background: var(--accent-color);
+   
+    display: block;
+    width: 100%;
+    height: 4px;
+
+    border-radius: 2px;
+
+    position: absolute;
+    left: 0;
+    bottom: -1.5px;
 }
 
 /* Header */
@@ -267,12 +285,22 @@ margin-right: 50px;
     z-index: 1;
 
     background-color: var(--backdrop-background);
+
+    opacity: 1;
+
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .modal {
@@ -284,10 +312,14 @@ margin-right: 50px;
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
-
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+
+    transform: translate(-50%, -50%) scale(1);
+
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-close {
@@ -666,7 +698,8 @@ margin-right: 50px;
 
 .thumb {
     position: relative;
-    /* width height for it??? */
+
+    overflow: hidden;
 }
 
 .item-gallary .overlay {
@@ -682,8 +715,12 @@ margin-right: 50px;
 
     position: absolute;
     top: 0;
-    /* left: 0; */
+    left: 0;
+    transform: translateY(100%);
 
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
 }
 
@@ -711,6 +748,7 @@ margin-right: 50px;
 
 .item-gallary .list-link:hover .overlay,
 .item-gallary .list-link:focus .overlay {
+    transform: translateY(0);
     opacity: 1;
 }
 
